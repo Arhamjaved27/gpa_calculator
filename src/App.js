@@ -1,7 +1,17 @@
-
+import { useState } from 'react';
+import Credit from './Components/Credit';
 import Navbar from './Components/Navbar';
+import Row from './Components/Row';
+import './App.css';
+
 
 function App() {
+  
+  const TestFun = (value)=>{
+    console.log(value);
+  };
+
+
   return (
     <>
       <Navbar />
@@ -15,7 +25,7 @@ function App() {
           <div className="mt-2 mb-2 input-group">
 
             <label className="btn btn-danger mt-2" htmlFor="inputGroupSelect01">Number Of Books...</label>
-            <select className="form-select p-1 m-2" id="inputGroupSelect01">
+            <select className="form-select p-1 m-2 w-25" id="inputGroupSelect01">
               <option selected>0</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -29,8 +39,8 @@ function App() {
             </select>
           </div>
 
-          <table className="table table-dark">
-            <thead>
+          <table className="table table-dark table-bordered table-hover table-responsive">
+            <thead >
               <tr>
                 <th scope="col">Books</th>
                 <th scope="col">Credit hours</th>
@@ -40,12 +50,8 @@ function App() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@sdf</td>
-              </tr>
+             <Row rownumber="1"/>
+             <Row rownumber="2"/>
 
             </tbody>
           </table>
