@@ -2,20 +2,78 @@ import React from 'react'
 import { useState } from 'react'
 
 export default function Row(props) {
+    const [gradePoints, setGradePoints] = useState('0.0');
 
-    // var gradePoints = 0.0;
     // const indGpa = 0;
     const [selectedCradit, setSelectedCradit] = useState('0');
     const [selectedGrade, setSelectedGrade] = useState('0');
     
+    const gpaPoints= (grad)=>{
+        var points = 0;
+        if(grad === 1)
+        {
+            points=4.00;
+        }
+        else if(grad === 2)
+        {
+            points=3.66;
+        }
+        else if(grad === 3)
+        {
+            points=3.33;
+        }
+        else if(grad === 4)
+        {
+            points=3.00;
+        }
+        else if(grad === 5)
+        {
+            points=2.66;
+        }
+        else if(grad === 6)
+        {
+            points=2.33;
+        }
+        else if(grad === 7)
+        {
+            points=2.00;
+        }
+        else if(grad === 8)
+        {
+            points=1.66;
+        }
+        else if(grad === 9)
+        {
+            points=1.33;
+        }
+        else if(grad === 10)
+        {
+            points=1.0;
+        }
+        else
+        {
+            points=0;
+        }
+        
+        
+        console.log(points); 
+        console.log(typeof(points)); 
+        return points;
+    }
 
     const handleCradit= (event)=>{
-        const value = event.target.value;  //getting value from onchange handler using evnet object
+        var subTotal = 0;
+        const value = parseInt(event.target.value, 10);  //getting value from onchange handler using evnet object
         setSelectedCradit(value); //seting value of cradit hours to state Variable usint thair function
+        // subTotal = value * parseInt(selectedGrade, 10)
+        
     }
     const handleGrade= (event)=>{
         const value = event.target.value;  //getting value from onchange handler using evnet object
         setSelectedGrade(value); //seting value of cradit hours to state Variable usint thair function
+
+        // const sub = parseInt(gpaPoints(selectedGrade), 10);
+        console.log(gpaPoints(parseInt(selectedGrade, 10)));
     }
    
 
