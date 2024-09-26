@@ -7,9 +7,14 @@ import './App.css';
 
 function App() {
   
-  const TestFun = (value)=>{
-    console.log(value);
+  const items = [];
+
+  const arrayValueSet = (value) =>{
+    items[0] = value;
+
+    console.log("Function geted value", items[0]);
   };
+  
 
 
   return (
@@ -50,8 +55,15 @@ function App() {
               </tr>
             </thead>
             <tbody>
-             <Row rownumber="1"/>
-             <Row rownumber="2"/>
+             <Row id="row-1"  catchValue = {arrayValueSet} rownumber="1"/>
+             <Row id="row-2" rownumber="2"/>
+             <Row id="row-3" rownumber="2"/>
+             <Row id="row-4" rownumber="2"/>
+             <Row id="row-5" rownumber="2"/>
+             <Row id="row-6" rownumber="2"/>
+             <Row id="row-7" rownumber="2"/>
+             <Row id="row-8" rownumber="2"/>
+             <Row id="row-9" rownumber="2"/>
 
             </tbody>
           </table>

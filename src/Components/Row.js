@@ -1,13 +1,31 @@
 import React from 'react'
+import App from '../App';
+
+
 import { useState } from 'react'
+import { useEffect } from 'react';
 
-export default function Row(props) {
+export default function Row({catchValue},props) {
     const [gradePoints, setGradePoints] = useState('0.0');
-
     // const indGpa = 0;
     const [selectedCradit, setSelectedCradit] = useState('0');
     const [selectedGrade, setSelectedGrade] = useState('0');
+
+    var  flag1, flag2 =0;
     
+    const bothValueCheck = ()=>{
+        if(flag1 === 0 && flag2 ===0)
+        {
+            console.log("Not Both Value is Selected");
+        }
+        else
+        {
+            setGradePoints(selectedCradit* gpaPoints(parseInt(selectedGrade, 10))); //setting Overall Grade pOints        
+            catchValue(parseInt(gradePoints, 10));
+        }
+    }
+
+
     const gpaPoints= (grad)=>{
         var points = 0;
         if(grad === 1)
@@ -55,28 +73,36 @@ export default function Row(props) {
             points=0;
         }
         
-        
-        console.log(points); 
-        console.log(typeof(points)); 
         return points;
     }
+
+
+   
+    useEffect(() => {
+        // console.log("selectedCradit updated:", selectedCradit);
+      }, [selectedCradit]); // This will log the updated state whenever it changes.
+
+      useEffect(() => {
+        // console.log("setSelectedGrade updated:", selectedGrade);
+      }, [selectedGrade]); // This will log the updated state whenever it changes.
+
 
     const handleCradit= (event)=>{
         var subTotal = 0;
         const value = parseInt(event.target.value, 10);  //getting value from onchange handler using evnet object
         setSelectedCradit(value); //seting value of cradit hours to state Variable usint thair function
-        // subTotal = value * parseInt(selectedGrade, 10)
-        
+
+        console.log("Cradit hourse ", selectedCradit, value);
+        flag1 =1;
+        bothValueCheck();
+
     }
     const handleGrade= (event)=>{
         const value = event.target.value;  //getting value from onchange handler using evnet object
         setSelectedGrade(value); //seting value of cradit hours to state Variable usint thair function
-
-        // const sub = parseInt(gpaPoints(selectedGrade), 10);
-        console.log(gpaPoints(parseInt(selectedGrade, 10)));
+        flag2 =1;     
     }
    
-
 
   return (
     <tr> 
@@ -111,8 +137,10 @@ export default function Row(props) {
                 </select>
             </div>
         </td>
+        
         <td>{selectedCradit}</td>
-        <td>{selectedGrade}</td>
+        <td>{selectedCradit* gpaPoints(parseInt(selectedGrade, 10))}</td>
     </tr>
   )
+
 }
